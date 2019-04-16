@@ -204,7 +204,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.runserver">
+  <component name="RunManager" selected="Python.makemigrations">
     <configuration name="makemigrations" type="PythonConfigurationType" factoryName="Python">
       <module name="pnk_server" />
       <option name="INTERPRETER_OPTIONS" value="" />
