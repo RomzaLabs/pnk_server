@@ -1,72 +1,27 @@
 # pnk_server
 
-[![Build Status](https://travis-ci.org/RomzaLabs/pnk_server.svg?branch=master)](https://travis-ci.org/RomzaLabs/pnk_server)
 [![Built with](https://img.shields.io/badge/Built_with-Cookiecutter_Django_Rest-F7B633.svg)](https://github.com/agconti/cookiecutter-django-rest)
 
-Backend for purnkleen.com. Check out the project's [documentation](http://RomzaLabs.github.io/pnk_server/).
+Backend for purnkleen.com.
 
-# Prerequisites
+## Architecture
 
-- [Docker](https://docs.docker.com/docker-for-mac/install/)  
-- [Travis CLI](http://blog.travis-ci.com/2013-01-14-new-client/)
-- [Heroku Toolbelt](https://toolbelt.heroku.com/)
+Documentation on the project architecture can be found [here](/.github/ARCHITECTURE.md).
 
-# Initialize the project
+## Contributing
 
-Start the dev server for local development:
+Instructions on how to contribute to this project can be found [here](/.github/CONTRIBUTING.md). 
 
-```bash
-docker-compose up
-```
+## Deployment
 
-Create a superuser to login to the admin:
+Instructions on how to deploy this application into production can be found [here](/.github/DEPLOYMENT.md).
 
-```bash
-docker-compose run --rm web ./manage.py createsuperuser
-```
+## Installation
 
+Instructions on how to install this project for local development can be found [here](/.github/INSTALLATION.md).
 
-# Continuous Deployment
+## Support
 
-Deployment automated via Travis. When builds pass on the master or qa branch, Travis will deploy that branch to Heroku. Enable this by:
-
-Creating the production sever:
-
-```
-heroku create pnk-server-prod --remote prod && \
-    heroku addons:create newrelic:wayne --app pnk_server-prod && \
-    heroku addons:create heroku-postgresql:hobby-dev --app pnk_server-prod && \
-    heroku config:set DJANGO_SECRET=`openssl rand -base64 32` \
-        DJANGO_AWS_ACCESS_KEY_ID="Add your id" \
-        DJANGO_AWS_SECRET_ACCESS_KEY="Add your key" \
-        DJANGO_AWS_STORAGE_BUCKET_NAME="pnk_server-prod" \
-        --app pnk_server-prod
-```
-
-Creating the qa sever:
-
-```
-heroku create `pnk-server-qa --remote qa && \
-    heroku addons:create newrelic:wayne && \
-    heroku addons:create heroku-postgresql:hobby-dev && \
-    heroku config:set DJANGO_SECRET=`openssl rand -base64 32` \
-        DJANGO_AWS_ACCESS_KEY_ID="Add your id" \
-        DJANGO_AWS_SECRET_ACCESS_KEY="Add your key" \
-        DJANGO_AWS_STORAGE_BUCKET_NAME="pnk_server-qa" \
-```
-
-Securely add your heroku credentials to travis so it can automatically deploy your changes.
-
-```bash
-travis encrypt HEROKU_AUTH_TOKEN="$(heroku auth:token)" --add
-```
-
-Commit your changes and push to master and qa to trigger your first deploys:
-
-```bash
-git commit -m "ci(travis): added heroku credentials" && \
-git push origin master && \
-git checkout -b qa && \
-git push -u origin qa
-```
-You're ready to continuously ship! ✨ 💅 🛳
+I'm not really going to do support for this project. If you find something you feel needs to be
+addressed, please file an issue, but the extent of what I will do for you is covered in
+the [support document](/.github/SUPPORT.md).
