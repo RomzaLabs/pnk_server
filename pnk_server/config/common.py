@@ -38,16 +38,16 @@ class Common(Configuration):
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
     )
 
-    ALLOWED_HOSTS = ["*"]
+    ALLOWED_HOSTS = ["purnkleen.com", "www.purnkleen.com", "api.purnkleen.com"]
     ROOT_URLCONF = 'pnk_server.urls'
-    SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+    SECRET_KEY = os.getenv('PNK_SERVER_DJANGO_SECRET_KEY')
     WSGI_APPLICATION = 'pnk_server.wsgi.application'
 
     # Email
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
     ADMINS = (
-        ('Author', 'me@rommelrico.com'),
+        ('Rommel Rico', 'me@rommelrico.com'),
     )
 
     # Postgres
