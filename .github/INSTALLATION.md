@@ -23,7 +23,27 @@ software setup for a project.
 9. Set the environment variables for your database(s):
     1. `export DATABASE_URL=postgres://postgres:<password>@127.0.0.1:5432/<DB name given to createdb>`
 10. Add `SECRET_KEY` to OS environment
-11. Apply migrations
+    1. export DJANGO_SECRET_KEY="<SECRET_KEY>"
+11. Create superuser:
+    1. python manage.py createsuperuser
+12. Apply migrations
     1. `python manage.py migrate`
 12. Run: 
     1. `python manage.py runserver`
+
+
+When installing for the first time on the production server, follow some of these instructions: 
+https://docs.webfaction.com/software/django/getting-started.html 
+
+
+If running on the production server,
+> workon pnk  
+> pip3.7 install -r requirements.txt
+
+
+Running the server  
+> python manage.py runserver 
+
+
+Creating a new app
+> python manage.py startapp myapp
