@@ -7,6 +7,7 @@ class Local(Common):
     DEBUG = True
 
     ALLOWED_HOSTS = ["*"]
+    SECRET_KEY = os.getenv('PNK_SERVER_DJANGO_SECRET_KEY')
 
     # Testing
     INSTALLED_APPS = Common.INSTALLED_APPS
