@@ -51,9 +51,20 @@ class Common(Configuration):
     )
 
     # Postgres
+    PNK_SERVER_POSTGRES_DBNAME = os.getenv("PNK_SERVER_POSTGRES_DBNAME")
+    PNK_SERVER_POSTGRES_USER = os.getenv("PNK_SERVER_POSTGRES_USER")
+    PNK_SERVER_POSTGRES_PASSWORD = os.getenv("PNK_SERVER_POSTGRES_PASSWORD")
+    PNK_SERVER_POSTGRES_HOST = os.getenv("PNK_SERVER_POSTGRES_HOST")
+    PNK_SERVER_POSTGRES_PORT = os.getenv("PNK_SERVER_POSTGRES_PORT")
     DATABASES = {
         'default': dj_database_url.config(
-            default='postgres://postgres:@postgres:5432/postgres',
+            default='postgres://%s:%s@%s:%s/%s' % (
+                PNK_SERVER_POSTGRES_USER,
+                PNK_SERVER_POSTGRES_PASSWORD,
+                PNK_SERVER_POSTGRES_HOST,
+                PNK_SERVER_POSTGRES_PORT,
+                PNK_SERVER_POSTGRES_DBNAME
+            ),
             conn_max_age=int(os.getenv('POSTGRES_CONN_MAX_AGE', 600))
         )
     }
