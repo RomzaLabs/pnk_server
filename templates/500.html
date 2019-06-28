@@ -6,19 +6,16 @@
 
 {% block container %}
 
-<section class="fullscreen-banner valign-wrapper error-wrapper-alt">
-    <div class="valign-cell">
-        <div class="container">
-            <div class="text-center">
-                <h1 class="mb-30">500</h1>
-                <span class="error-sub">OOPS! SERVER ERROR</span>
-
-                <p>Sorry, but we messed up. Please inform us of the error.</p>
-
-                <a class="btn btn-lg red waves-effect waves-light" href="https://discord.gg/Q9WHD3J">Report Bug</a>
-            </div>
-        </div><!-- /.container -->
-    </div><!-- /.valign-cell -->
-</section>
+<div class="ui placeholder segment">
+    <div class="ui icon header">
+        <div>
+            <img class="ui centered medium image" src="https://media.giphy.com/media/ceHKRKMR6Ojao/giphy.gif">
+        </div>
+        Sorry, but we messed up! <br/>
+        Please go to our Discord server and inform us of the error. Link is in the button below. <br/>
+        Status code: 500.
+    </div>
+    <a class="ui primary button" href="https://discord.gg/Q9WHD3J">Go to Discord</a>
+</div>
 
 {% endblock %}
