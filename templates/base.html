@@ -45,6 +45,11 @@
         .ui.menu.header {
             padding: 1rem;
         }
+        .content {
+            background-color: #131a21;
+            padding: 1rem;
+            height: 90vh;
+        }
     </style>
 
 </head>
@@ -60,10 +65,12 @@
             </div>
         </div>
     </div>
-    {% block body %}
-        {% block container %}{% endblock %}
-        {% block content %}{% endblock %}
-    {% endblock %}
+    <div class="ui container content">
+        {% block body %}
+            {% block container %}{% endblock %}
+            {% block content %}{% endblock %}
+        {% endblock %}
+    </div>
 </div>
 
 </body>
