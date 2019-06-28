@@ -39,12 +39,27 @@
         .ui .active a:hover {
             color: white !important;
         }
+        .ui.menu {
+            background-color: #1A252D;
+        }
+        .ui.menu.header {
+            padding: 1rem;
+        }
     </style>
 
 </head>
 <body>
 
 <div class="ui container">
+    <div class="ui container">
+        <div class="ui stackable menu">
+            <div class="item">
+                <a href="https://purnkleen.com/">
+                    <img class="ui tiny image" src="{% static 'img/PurNKleen_logo.png' %}">
+                </a>
+            </div>
+        </div>
+    </div>
     {% block body %}
         {% block container %}{% endblock %}
         {% block content %}{% endblock %}
