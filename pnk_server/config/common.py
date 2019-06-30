@@ -45,9 +45,13 @@ class Common(Configuration):
 
     # Email
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = os.getenv("PNK_SERVER_EMAIL_HOST")
+    EMAIL_HOST_USER = os.getenv("PNK_SERVER_EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD = os.getenv("PNK_SERVER_EMAIL_HOST_PASSWORD")
+    DEFAULT_FROM_EMAIL = os.getenv("PNK_SERVER_DEFAULT_FROM_EMAIL")
 
     ADMINS = (
-        ('Rommel Rico', 'me@rommelrico.com'),
+        ('PNK Admin', 'admin@purnkleen.com'),
     )
 
     # Postgres
@@ -83,7 +87,7 @@ class Common(Configuration):
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/2.0/howto/static-files/
     STATIC_ROOT = os.path.normpath(join(os.path.dirname(BASE_DIR), 'static'))
-    STATICFILES_DIRS = []
+    STATICFILES_DIRS = ['templates']
     STATIC_URL = '/static/'
     STATICFILES_FINDERS = (
         'django.contrib.staticfiles.finders.FileSystemFinder',
