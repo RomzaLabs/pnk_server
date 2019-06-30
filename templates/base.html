@@ -24,7 +24,13 @@
             background-color: #181818;
             background-image: url("{% static 'img/Yela.jpg' %}");
             background-size: cover;
+            color: white;
         }
+
+        .error-transparent-bg {
+            background-color: transparent !important;
+        }
+
         .ui.menu {
             font-family: 'Furore', 'sans-serif';
         }
@@ -43,6 +49,19 @@
         }
         .ui.menu.header {
             padding: 1rem;
+        }
+        .error-code {
+            text-align: center;
+            font-size: 3em;
+            opacity: 0.9;
+            line-height: 1em;
+            margin: 10px auto;
+        }
+        .error-code-description {
+            text-align: center;
+            line-height: 1em;
+            opacity: 0.9;
+            margin-bottom: 1em;
         }
         .content {
             background-color: #131a21;
