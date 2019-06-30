@@ -6,16 +6,10 @@
 
 {% block container %}
 
-<div class="ui placeholder segment">
-    <div class="ui icon header">
-        <div>
-            <img class="ui centered medium image" src="https://media.giphy.com/media/Bp3dFfoqpCKFyXuSzP/giphy.gif">
-        </div>
-        Oops! Page not found! <br/>
-        Sorry, but we can’t seem to find the page you are looking for.<br/>
-        Status code: 404.
-    </div>
-    <a class="ui primary button" href="https://discord.gg/Q9WHD3J">Go to Discord</a>
+<div class="ui placeholder segment error-transparent-bg">
+    <span class="error-code">404</span>
+    <span class="error-code-description">Page not found</span>
+    <a class="ui primary button" href="https://discord.gg/Q9WHD3J">Tell us in our Discord</a>
 </div>
 
 {% endblock %}
