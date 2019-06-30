@@ -6,16 +6,10 @@
 
 {% block container %}
 
-<div class="ui placeholder segment">
-    <div class="ui icon header">
-        <div>
-            <img class="ui centered medium image" src="https://media.giphy.com/media/ceHKRKMR6Ojao/giphy.gif">
-        </div>
-        Sorry, but we messed up! <br/>
-        Please go to our Discord server and inform us of the error. Link is in the button below. <br/>
-        Status code: 500.
-    </div>
-    <a class="ui primary button" href="https://discord.gg/Q9WHD3J">Go to Discord</a>
+<div class="ui placeholder segment error-transparent-bg">
+    <span class="error-code">500</span>
+    <span class="error-code-description">We messed up</span>
+    <a class="ui primary button" href="https://discord.gg/Q9WHD3J">Tell us in our Discord</a>
 </div>
 
 {% endblock %}
