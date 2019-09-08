@@ -21,6 +21,7 @@ class Common(Configuration):
         'rest_framework',            # utilities for rest apis
         'rest_framework.authtoken',  # token authentication
         'django_filters',            # for filtering rest endpoints
+        'corsheaders',               # adds CORS headers to responses
 
         # Your apps
         'pnk_server.users',
@@ -29,6 +30,7 @@ class Common(Configuration):
 
     # https://docs.djangoproject.com/en/2.0/topics/http/middleware/
     MIDDLEWARE = (
+        'corsheaders.middleware.CorsMiddleware',
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
@@ -36,6 +38,15 @@ class Common(Configuration):
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    )
+
+    CORS_ORIGIN_WHITELIST = (
+        "http://localhost:3000",
+        "http://0.0.0.0:3000",
+        "http://127.0.0.1:3000",
+        "https://purnkleen.com",
+        "https://www.purnkleen.com",
+        "https://api.purnkleen.com"
     )
 
     ALLOWED_HOSTS = ["purnkleen.com", "www.purnkleen.com", "api.purnkleen.com"]
