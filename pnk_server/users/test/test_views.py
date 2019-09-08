@@ -25,7 +25,15 @@ class TestUserListTestCase(APITestCase):
         eq_(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_post_request_with_valid_data_succeeds(self):
-        response = self.client.post(self.url, self.user_data)
+        data = {
+            "username": self.user_data.get('username'),
+            "password": self.user_data.get('password'),
+            "email": self.user_data.get('email'),
+            "first_name": self.user_data.get('first_name'),
+            "last_name": self.user_data.get('last_name'),
+            "user_type": self.user_data.get('user_type'),
+        }
+        response = self.client.post(self.url, data)
         eq_(response.status_code, status.HTTP_201_CREATED)
 
         user = User.objects.get(pk=response.data.get('id'))
@@ -40,7 +48,7 @@ class TestUserDetailTestCase(APITestCase):
 
     def setUp(self):
         self.user = UserFactory()
-        self.url = reverse('user-detail', kwargs={'pk': self.user.pk})
+        self.url = reverse('user-detail', kwargs={'username': self.user.username})
         self.client.credentials(HTTP_AUTHORIZATION=f'Token {self.user.auth_token}')
 
     def test_get_request_returns_a_given_user(self):
