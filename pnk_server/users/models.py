@@ -6,18 +6,13 @@ from django.contrib.auth.models import AbstractUser
 from django.utils.encoding import python_2_unicode_compatible
 from django.db.models.signals import post_save
 from rest_framework.authtoken.models import Token
+from .choices import USER_TYPES
 
 
 @python_2_unicode_compatible
 class User(AbstractUser):
-
-    EMPLOYEE_TYPES = (
-        ('MEM', 'Member'),
-        ('AFF', 'Affiliate'),
-    )
-
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user_type = models.CharField(max_length=3, choices=EMPLOYEE_TYPES, default='AFF')
+    user_type = models.CharField(max_length=3, choices=USER_TYPES, default='AFF')
 
     def __str__(self):
         return self.username
