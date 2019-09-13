@@ -1,7 +1,6 @@
 from rest_framework import viewsets, mixins
 from rest_framework.permissions import AllowAny
 from .models import Mission
-from ..users.permissions import IsUserOrReadOnly
 from .serializers import MissionSerializer
 
 
@@ -17,6 +16,6 @@ class MissionViewSet(mixins.CreateModelMixin,
     TODO: Update should only be done by authenticated members.
     TODO: Destroy should only be done by owner.
     """
-    queryset = Mission.objects.all()
+    queryset = Mission.objects.all().order_by("-mission_date")
     serializer_class = MissionSerializer
     permission_classes = (AllowAny,)
