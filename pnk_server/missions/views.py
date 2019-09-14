@@ -1,9 +1,8 @@
 from rest_framework import viewsets, mixins
-from rest_framework.permissions import AllowAny
 
 from .models import Mission
 from .serializers import MissionSerializer
-from ..users.permissions import IsMemberOrReadOnly
+from ..users.permissions import IsCommanderOrReadOnly, IsMemberOrReadOnly
 
 
 class MissionDetailViewSet(mixins.RetrieveModelMixin,
@@ -17,7 +16,7 @@ class MissionDetailViewSet(mixins.RetrieveModelMixin,
     """
     queryset = Mission.objects.all()
     serializer_class = MissionSerializer
-    permission_classes = (AllowAny,)
+    permission_classes = (IsCommanderOrReadOnly,)
 
 
 class MissionListViewSet(mixins.CreateModelMixin,
