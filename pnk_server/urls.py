@@ -13,12 +13,10 @@ router.register(r'users', UserDetailViewSet)
 router.register(r'users', UserListViewSet)
 router.register(r'missions', MissionDetailViewSet)
 router.register(r'missions', MissionListViewSet)
-print(router.urls)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
-    # path('api/v1/users/$', UserViewSet),
     path('api-token-auth/', views.obtain_auth_token),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('accounts/', include('django.contrib.auth.urls')),
