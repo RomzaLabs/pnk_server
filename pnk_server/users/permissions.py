@@ -14,6 +14,17 @@ class IsUserOrReadOnly(BasePermission):
         return obj == request.user
 
 
+class IsCommanderOrReadOnly(BasePermission):
+    """
+    Object-level permission to only allow owners of an object to edit it.
+    """
+
+    def has_object_permission(self, request, view, obj):
+        if request.method in SAFE_METHODS:
+            return True
+        return obj.commander == request.user
+
+
 class IsMemberOrReadOnly(BasePermission):
     """
     Object-level permission to only allow member to edit it.
