@@ -5,17 +5,20 @@ from django.contrib import admin
 from django.views.generic.base import RedirectView
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
-from .users.views import UserViewSet, UserCreateViewSet
-from .missions.views import MissionViewSet
+from .users.views import UserDetailViewSet, UserListViewSet
+from .missions.views import MissionDetailViewSet, MissionListViewSet
 
 router = DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'users', UserCreateViewSet)
-router.register(r'missions', MissionViewSet)
+router.register(r'users', UserDetailViewSet)
+router.register(r'users', UserListViewSet)
+router.register(r'missions', MissionDetailViewSet)
+router.register(r'missions', MissionListViewSet)
+print(router.urls)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
+    # path('api/v1/users/$', UserViewSet),
     path('api-token-auth/', views.obtain_auth_token),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('accounts/', include('django.contrib.auth.urls')),
