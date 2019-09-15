@@ -1,59 +1,16 @@
-# Users
-Supports registering, viewing, and updating user accounts.
+# Missions
+Supports adding, viewing, and updating missions.
 
-## Register a new user account
+## Get Mission List
 
-**Request**:
+**Request**:  
 
-`POST` `/users/`
+`GET` `/missions/`
 
-Parameters:
+Parameters:  
 
-Name       | Type   | Required | Description
------------|--------|----------|------------
-username   | string | Yes      | The username for the new user.
-password   | string | Yes      | The password for the new user account.
-first_name | string | No       | The user's given name.
-last_name  | string | No       | The user's family name.
-email      | string | No       | The user's email address.
-user_type  | string | No       | MEM if they're a member, AFF if they're affiliates.
+**Response**:  
 
-*Note:*
-
-- Not Authorization Protected
-
-**Response**:
-
-Content-Type application/json  
-201 Created  
-```json
-{
-  "id": "6d5f9bae-a31b-4b7b-82c4-3853eda2b011",
-  "username": "richard",
-  "first_name": "Richard",
-  "last_name": "Hendriks",
-  "email": "richard@piedpiper.com",
-  "auth_token": "132cf952e0165a274bf99e115ab483671b3d9ff6",
-  "user_type": "AFF"
-}
-```
-
-The `auth_token` returned with this response should be stored by the client for
-authenticating future requests to the API. See [Authentication](authentication.md).
-
-
-## Get users
-
-**Request**:
-
-`GET` `/users/`
-
-Parameters:
-
-**Response**:
-
-Content-Type application/json  
-200 OK  
 ```json
 {
     "count": 17,
@@ -304,55 +261,138 @@ Content-Type application/json
 }
 ```
 
-
-## Get a user's profile information
+## Get a Mission
 
 **Request**:
 
-`GET` `/users/:username/`
+`GET` `/missions/:missionId/`
 
 Parameters:
 
+**Response**:
+
+```json
+{
+    "id": 17,
+    "name": "Test",
+    "description": "Test",
+    "discordURL": "https://www.google.com",
+    "videoURL": "https://www.google.com",
+    "category": "HUN",
+    "location": "Test",
+    "feature_image": "https://www.google.com",
+    "mission_date": "2019-09-13T21:53:00+0000",
+    "mission_status": "ACT",
+    "briefing": "Briefing",
+    "debriefing": "Debriefing",
+    "created_at": "2019-09-14T05:29:34+0000",
+    "updated_at": "2019-09-15T00:17:36+0000",
+    "commander": "3786b93a-30ea-447a-a2b7-3bdb187ead6d",
+    "rsvp_users": [
+        "229a5948-c5a3-4e1f-a075-24bb553335a9",
+        "3786b93a-30ea-447a-a2b7-3bdb187ead6d",
+        "97d16898-74b2-4720-ada0-c189dde46ebc",
+        "61c1fc24-73cb-41f2-9899-d44a1b2bdd54"
+    ],
+    "attended_users": [
+        "97d16898-74b2-4720-ada0-c189dde46ebc"
+    ]
+}
+```
+
+## Create a Mission
+
+**Request**:
+
+`POST` `/missions/`
+
+Parameters:
+
+Name           | Type   | Required | Description
+---------------|--------|----------|------------
+name           | string | Yes      | The name of the mission.
+description    | string | Yes      | The description for the mission.
+location       | string | Yes      | The location of the mission.
+mission_date   | string | Yes      | The date of the mission with timezone e.g. 2019-09-13T04:57:03+0000.
+commander      | string | Yes      | The UUID of the commander for this mission.
+discordURL     | string | No       | Link to discord URL.
+videoURL       | string | No       | Link to stream or video URL.
+discordURL     | string | No       | Link to discord URL if possible.
+category       | string | No       | Category choice.
+discordURL     | string | No       | Link to discord URL if possible.
+feature_image  | string | No       | Link to image.
+mission_status | string | No       | ACT, SUC, or FAI
+briefing       | string | No       | Mission briefing.
+debriefing     | string | No       | Mission debriefing.
+created_at     | date   | No       | The date the mission was created e.g. 2019-09-13T04:57:03+0000.
+updated_at     | date   | No       | The date the mission was created e.g. 2019-09-13T04:57:03+0000.
+rsvp_users     | array  | No       | An array of UUIDs for the RSVP users.
+attended_users | array  | No       | An array of UUIDs for the attended users.
+
 *Note:*
 
-- **[Authorization Protected](authentication.md)**
+- Authorization Protected. Only PNK Members can create missions.
 
 **Response**:
 
 Content-Type application/json  
-200 OK  
+201 Created  
 ```json
 {
-  "id": "6d5f9bae-a31b-4b7b-82c4-3853eda2b011",
-  "username": "richard",
-  "first_name": "Richard",
-  "last_name": "Hendriks",
-  "email": "richard@piedpiper.com",
-  "user_type": "AFF"
+    "id": 20,
+    "name": "Test",
+    "description": "Test",
+    "discordURL": "https://www.google.com",
+    "videoURL": "https://www.google.com",
+    "category": "HUN",
+    "location": "Test",
+    "feature_image": "https://www.google.com",
+    "mission_date": "2019-09-13T21:53:00+0000",
+    "mission_status": "ACT",
+    "briefing": "Briefing",
+    "debriefing": "Debriefing",
+    "created_at": "2019-09-15T04:02:45+0000",
+    "updated_at": "2019-09-15T04:02:45+0000",
+    "commander": "ad0f43ea-8e30-4ba9-9ee3-56398fdec759",
+    "rsvp_users": [
+        "3786b93a-30ea-447a-a2b7-3bdb187ead6d",
+        "97d16898-74b2-4720-ada0-c189dde46ebc"
+    ],
+    "attended_users": [
+        "97d16898-74b2-4720-ada0-c189dde46ebc"
+    ]
 }
 ```
 
 
-## Update your profile information
+## Update mission
 
 **Request**:
 
-`PUT/PATCH` `/users/:username/`
+`PATCH` `/missions/:missionId/`
 
 Parameters:
 
-Name       | Type   | Description
------------|--------|---
-first_name | string | The first_name of the user object.
-last_name  | string | The last_name of the user object.
-email      | string | The user's email address.
-user_type  | string | MEM if they're a member, AFF if they're affiliates.
-
-
-*Note:*
-
-- All parameters are optional
-- **[Authorization Protected](authentication.md)**
+Name           | Type   | Required | Description
+---------------|--------|----------|------------
+name           | string | Yes      | The name of the mission.
+description    | string | Yes      | The description for the mission.
+location       | string | Yes      | The location of the mission.
+mission_date   | string | Yes      | The date of the mission with timezone e.g. 2019-09-13T04:57:03+0000.
+commander      | string | Yes      | The UUID of the commander for this mission.
+discordURL     | string | No       | Link to discord URL.
+videoURL       | string | No       | Link to stream or video URL.
+discordURL     | string | No       | Link to discord URL if possible.
+category       | string | No       | Category choice.
+discordURL     | string | No       | Link to discord URL if possible.
+feature_image  | string | No       | Link to image.
+mission_status | string | No       | ACT, SUC, or FAI
+briefing       | string | No       | Mission briefing.
+debriefing     | string | No       | Mission debriefing.
+created_at     | date   | No       | The date the mission was created e.g. 2019-09-13T04:57:03+0000.
+updated_at     | date   | No       | The date the mission was created e.g. 2019-09-13T04:57:03+0000.
+rsvp_users     | array  | No       | An array of UUIDs for the RSVP users.
+attended_users | array  | No       | An array of UUIDs for the attended users.
 
 **Response**:
 
@@ -360,11 +400,84 @@ Content-Type application/json
 200 OK  
 ```json
 {
-  "id": "6d5f9bae-a31b-4b7b-82c4-3853eda2b011",
-  "username": "richard",
-  "first_name": "Richard",
-  "last_name": "Hendriks",
-  "email": "richard@piedpiper.com",
-  "user_type": "AFF"
+    "id": 20,
+    "name": "Test",
+    "description": "Test",
+    "discordURL": "https://www.google.com",
+    "videoURL": "https://www.google.com",
+    "category": "HUN",
+    "location": "Test",
+    "feature_image": "https://www.google.com",
+    "mission_date": "2019-09-13T21:53:00+0000",
+    "mission_status": "ACT",
+    "briefing": "Even longer briefing",
+    "debriefing": "Debriefing",
+    "created_at": "2019-09-15T04:02:45+0000",
+    "updated_at": "2019-09-15T04:03:19+0000",
+    "commander": "ad0f43ea-8e30-4ba9-9ee3-56398fdec759",
+    "rsvp_users": [
+        "3786b93a-30ea-447a-a2b7-3bdb187ead6d",
+        "97d16898-74b2-4720-ada0-c189dde46ebc"
+    ],
+    "attended_users": [
+        "97d16898-74b2-4720-ada0-c189dde46ebc"
+    ]
+}
+```
+
+*Note:*
+
+- Authorization Protected. Only the mission commander can update a mission.
+
+
+## Delete a mission
+
+**Request**:
+
+`PATCH` `/missions/:missionId/`
+
+Parameters:
+
+**Response**:
+
+Content-Type application/json  
+204 No Content  
+
+
+*Note:*
+
+- Authorization Protected. Only the mission commander can delete a mission.
+
+
+## RSVP for a Mission
+
+**Request**:
+
+`PATCH` `/missionrsvp/:missionId/`
+
+Parameters:
+
+```json
+{
+	"rsvp_users": ["UUIDs of RSVP USERS"]
+}
+```
+
+*Note:*
+
+- Authorization Protected.
+
+**Response**:
+
+Content-Type application/json  
+200 OK  
+```json
+{
+    "rsvp_users": [
+        "229a5948-c5a3-4e1f-a075-24bb553335a9",
+        "3786b93a-30ea-447a-a2b7-3bdb187ead6d",
+        "97d16898-74b2-4720-ada0-c189dde46ebc",
+        "61c1fc24-73cb-41f2-9899-d44a1b2bdd54"
+    ]
 }
 ```

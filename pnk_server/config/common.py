@@ -25,6 +25,7 @@ class Common(Configuration):
 
         # Your apps
         'pnk_server.users',
+        'pnk_server.missions',
 
     )
 
