@@ -24,10 +24,9 @@ user_type  | string | No       | MEM if they're a member, AFF if they're affilia
 
 **Response**:
 
+Content-Type application/json  
+201 Created  
 ```json
-Content-Type application/json
-201 Created
-
 {
   "id": "6d5f9bae-a31b-4b7b-82c4-3853eda2b011",
   "username": "richard",
@@ -53,10 +52,9 @@ Parameters:
 
 **Response**:
 
+Content-Type application/json  
+200 OK  
 ```json
-Content-Type application/json
-200 OK
-
 {
     "count": 17,
     "next": "http://localhost:8000/api/v1/missions/?page=2",
@@ -321,10 +319,9 @@ Parameters:
 
 **Response**:
 
+Content-Type application/json  
+200 OK  
 ```json
-Content-Type application/json
-200 OK
-
 {
   "id": "6d5f9bae-a31b-4b7b-82c4-3853eda2b011",
   "username": "richard",
@@ -359,10 +356,9 @@ user_type  | string | MEM if they're a member, AFF if they're affiliates.
 
 **Response**:
 
+Content-Type application/json  
+200 OK  
 ```json
-Content-Type application/json
-200 OK
-
 {
   "id": "6d5f9bae-a31b-4b7b-82c4-3853eda2b011",
   "username": "richard",
