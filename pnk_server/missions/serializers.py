@@ -7,3 +7,10 @@ class MissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mission
         fields = '__all__'
+
+
+class MissionRSVPSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Mission
+        fields = ('rsvp_users',)
