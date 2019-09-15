@@ -1,8 +1,8 @@
 from rest_framework import viewsets, mixins
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAdminUser
 from django.db.models import Q
 from .models import User
-from .permissions import IsUserOrReadOnly
+from .permissions import IsUserOrReadOnly, IsSuperuserOrReadOnly
 from .serializers import CreateUserSerializer, UserSerializer
 
 
@@ -26,4 +26,4 @@ class UserListViewSet(mixins.CreateModelMixin,
     """
     queryset = User.objects.filter(Q(is_superuser=False)).order_by("username")
     serializer_class = CreateUserSerializer
-    permission_classes = (AllowAny,)
+    permission_classes = (IsSuperuserOrReadOnly,)

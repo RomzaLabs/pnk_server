@@ -1,6 +1,18 @@
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 
 
+class IsSuperuserOrReadOnly(BasePermission):
+    """
+    Object-level permission to only allow admin members to edit it.
+    """
+
+    def has_permission(self, request, view):
+        return bool(
+            request.method in SAFE_METHODS or
+            request.user.is_authenticated and
+            request.user.is_superuser
+        )
+
 class IsUserOrReadOnly(BasePermission):
     """
     Object-level permission to only allow owners of an object to edit it.
