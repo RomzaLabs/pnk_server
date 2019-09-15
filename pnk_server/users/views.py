@@ -23,6 +23,6 @@ class UserListViewSet(mixins.CreateModelMixin,
     """
     Creates user accounts
     """
-    queryset = User.objects.all()
+    queryset = User.objects.all().order_by("username")
     serializer_class = CreateUserSerializer
     permission_classes = (AllowAny,)
