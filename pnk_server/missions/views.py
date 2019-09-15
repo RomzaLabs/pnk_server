@@ -1,7 +1,8 @@
 from rest_framework import viewsets, mixins
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Mission
-from .serializers import MissionSerializer
+from .serializers import MissionSerializer, MissionRSVPSerializer
 from ..users.permissions import IsCommanderOrReadOnly, IsMemberOrReadOnly
 
 
@@ -29,3 +30,13 @@ class MissionListViewSet(mixins.CreateModelMixin,
     queryset = Mission.objects.all().order_by("-mission_date")
     serializer_class = MissionSerializer
     permission_classes = (IsMemberOrReadOnly,)
+
+
+class MissionRSVPViewSet(mixins.UpdateModelMixin,
+                         viewsets.GenericViewSet):
+    """
+    Update a mission RSVP participants ('rsvp_users').
+    """
+    queryset = Mission.objects.all()
+    serializer_class = MissionRSVPSerializer
+    permission_classes = (IsAuthenticated,)
